@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard</title>
+
+    <style>
+        body {
+            font-family: 'Comic Sans MS';
+            background: linear-gradient(to right, #a1c4fd, #fbc2eb);
+        }
+
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0px 0px 20px pink;
+        }
+
+        .card {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 10px;
+            text-align: left;
+            box-shadow: 0px 0px 10px lightgray;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .accept { background: green; color: white; }
+        .reject { background: red; color: white; }
+
+        .status {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .pending { color: orange; }
+        .accepted { color: green; }
+        .rejected { color: red; }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>👨‍⚕️ Welcome Dr. {{ name }} 👶</h2>
+
+<h3>📅 Your Appointments</h3>
+
+{% for a in appointments %}
+<div class="card">
+
+    <!-- ✅ CORRECT MAPPING -->
+    <p>👤 Patient ID: {{ a[1] }}</p>
+    <p>📅 Date: {{ a[3] }}</p>
+    <p>⏰ Time: {{ a[4] }}</p>
+    <p>📝 Problem: {{ a[5] }}</p>
+
+    <!-- STATUS -->
+    <p class="status
+        {% if a[6]=='Pending' %}pending
+        {% elif a[6]=='Accepted' %}accepted
+        {% else %}rejected{% endif %}">
+        
+        {% if a[6]=='Pending' %}
+            🟡 Pending
+        {% elif a[6]=='Accepted' %}
+            🟢 Accepted
+        {% else %}
+            🔴 Rejected
+        {% endif %}
+    </p>
+
+    <!-- BUTTONS -->
+    {% if a[6]=='Pending' %}
+        <a href="/accept/{{ a[0] }}">
+            <button class="btn accept">✔ Accept</button>
+        </a>
+
+        <a href="/reject/{{ a[0] }}">
+            <button class="btn reject">✖ Reject</button>
+        </a>
+    {% endif %}
+
+</div>
+{% endfor %}
+
+<br>
+<a href="/logout">🚪 Logout</a>
+
+</div>
+
+</body>
+</html>

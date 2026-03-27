@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #a1c4fd, #fbc2eb);
+            animation: gradientMove 8s infinite alternate;
+        }
+
+        @keyframes gradientMove {
+            0% {background-position: left;}
+            100% {background-position: right;}
+        }
+
+        .container {
+            width: 90%;
+            margin: 30px auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        /* USERS */
+        .users {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+            gap: 15px;
+        }
+
+        .user-card {
+            background: #ffe0f0;
+            padding: 10px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .user-card:hover {
+            transform: scale(1.05);
+            background: #ffd6e7;
+        }
+
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #ff9aa2;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        tr {
+            transition: 0.3s;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+            transform: scale(1.01);
+        }
+
+        /* STATUS BADGES */
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+        }
+
+        .pending { background: orange; }
+        .accepted { background: green; }
+        .rejected { background: red; }
+
+        /* LOGOUT BUTTON */
+        .logout {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: #ff6f91;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            width: 120px;
+            text-align: center;
+        }
+
+        .logout:hover {
+            background: #ff3f6c;
+        }
+
+        @keyframes fadeIn {
+            from {opacity:0; transform: translateY(20px);}
+            to {opacity:1; transform: translateY(0);}
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🛠️ Admin Panel 🎉</h1>
+
+<!-- USERS -->
+<h2>👥 Users</h2>
+
+<div class="users">
+{% for user in users %}
+    <div class="user-card">
+        <b>{{ user[1] }}</b><br>
+        <small>{{ user[6] }}</small>
+    </div>
+{% endfor %}
+</div>
+
+<!-- APPOINTMENTS -->
+<h2>📅 Appointments</h2>
+
+<table>
+<tr>
+    <th>ID</th>
+    <th>Patient 👶</th>
+    <th>Doctor 👨‍⚕️</th>
+    <th>Date 📅</th>
+    <th>Time ⏰</th>
+    <th>Problem 📝</th>
+    <th>Status 🚦</th>
+</tr>
+
+{% for a in appointments %}
+<tr>
+    <td>{{ a[0] }}</td>
+    <td>{{ a[1] }}</td>
+    <td>{{ a[2] }}</td>
+    <td>{{ a[3] }}</td>
+    <td>{{ a[4] }}</td>
+    <td>{{ a[5] }}</td>
+    <td>
+        <span class="badge
+        {% if a[6]=='Pending' %}pending
+        {% elif a[6]=='Accepted' %}accepted
+        {% else %}rejected{% endif %}">
+        {{ a[6] }}
+        </span>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+<a href="/logout" class="logout">🚪 Logout</a>
+
+</div>
+
+</body>
+</html>

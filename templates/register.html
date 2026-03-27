@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Comic Sans MS;
+  background: url('https://cdn.pixabay.com/photo/2017/08/30/07/52/kids-2699307_1280.jpg');
+  background-size: cover;
+}
+
+.container {
+  width: 400px;
+  margin: 80px auto;
+  background: rgba(255,255,255,0.95);
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 20px pink;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+input, select, button {
+  padding: 10px;
+  margin: 8px;
+  width: 90%;
+  border-radius: 10px;
+}
+
+button {
+  background: pink;
+  border: none;
+}
+
+button:hover {
+  background: hotpink;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+<h2>🧸 Register Patient / Doctor 👶</h2>
+
+<form method="post">
+
+  <input name="name" placeholder="👤 Full Name" required><br>
+
+  <input name="email" placeholder="📧 Email" required><br>
+
+  <input name="phone" placeholder="📱 Phone Number" required><br>
+
+  <input name="password" type="password" placeholder="🔒 Password" required><br>
+
+  <input name="disease" placeholder="🩺 Disease / Problem"><br>
+
+  <select name="role">
+    <option value="patient">👶 Patient</option>
+    <option value="doctor">👨‍⚕️ Doctor</option>
+  </select><br>
+
+  <button>Register 🎉</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

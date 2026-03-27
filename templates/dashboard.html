@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            font-family: 'Comic Sans MS';
+            background: url("/static/images/dashboard.png") no-repeat center center/cover;
+            margin: 0;
+        }
+
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0px 0px 20px pink;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .btn {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #8ecae6;
+            border-radius: 10px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #219ebc;
+            color: white;
+        }
+
+        .appointment {
+            background: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 10px;
+            text-align: left;
+            box-shadow: 0px 0px 10px lightgray;
+            transition: 0.3s;
+        }
+
+        .appointment:hover {
+            transform: scale(1.03);
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .pending { color: orange; }
+        .accepted { color: green; }
+        .rejected { color: red; }
+
+        @keyframes fadeIn {
+            from {opacity:0;}
+            to {opacity:1;}
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🎉 Welcome {{ session["name"] }} 👶</h2>
+
+<a href="/doctors" class="btn">👨‍⚕️ View Doctors</a>
+<a href="/chatbot" class="btn">🤖 Chat Assistant</a>
+<a href="/logout" class="btn">🚪 Logout</a>
+
+<h3>📅 Your Appointments</h3>
+
+{% for a in appointments %}
+<div class="appointment">
+
+    <!-- ✅ FIXED DATA MAPPING -->
+    <p>👨‍⚕️ Doctor: {{ a[1] }}</p>
+    <p>📅 Date: {{ a[2] }}</p>
+    <p>⏰ Time: {{ a[3] }}</p>
+    <p>📝 Problem: {{ a[4] }}</p>
+
+    <p class="status
+        {% if a[5]=='Pending' %}pending
+        {% elif a[5]=='Accepted' %}accepted
+        {% else %}rejected{% endif %}">
+        
+        {% if a[5]=='Pending' %}
+            🟡 Pending
+        {% elif a[5]=='Accepted' %}
+            🟢 Accepted
+        {% else %}
+            🔴 Rejected
+        {% endif %}
+    </p>
+
+</div>
+{% else %}
+<p>No appointments yet</p>
+{% endfor %}
+
+<h3>🔔 Notifications</h3>
+<p>No notifications</p>
+
+</div>
+
+</body>
+</html>

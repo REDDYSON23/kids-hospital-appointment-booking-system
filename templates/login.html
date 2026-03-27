@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kids Hospital</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Comic Sans MS;
+  background: url('https://cdn.pixabay.com/photo/2017/08/30/07/52/kids-2699307_1280.jpg');
+  background-size: cover;
+}
+
+/* Center box */
+.container {
+  width: 350px;
+  margin: 100px auto;
+  background: rgba(255,255,255,0.9);
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 20px pink;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+h2 {
+  color: darkblue;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  width: 90%;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+button {
+  background: pink;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  background: hotpink;
+}
+
+a {
+  color: purple;
+  text-decoration: none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h2>👶 Kids Hospital Login 🧸</h2>
+
+  <form method="post">
+    <input name="email" placeholder="📧 Email"><br>
+    <input name="password" type="password" placeholder="🔒 Password"><br>
+    <button>Login 🚀</button>
+  </form>
+
+  <br>
+  <a href="/register">✨ New User? Register</a>
+</div>
+
+</body>
+</html>
